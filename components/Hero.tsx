@@ -84,7 +84,7 @@ const DeepNeuralNetwork = ({ isDark }: { isDark: boolean }) => {
     return () => { cancelAnimationFrame(animationFrameId); window.removeEventListener('mousemove', handleMouseMove); window.removeEventListener('resize', init); };
   }, [isDark]);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-[5] opacity-100" />;
+  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-[5] opacity-100 will-change-transform" style={{ transform: 'translate3d(0,0,0)', backfaceVisibility: 'hidden' }} />;
 };
 
 const GeometricVortex = ({ isDark }: { isDark: boolean }) => {
@@ -103,7 +103,7 @@ const GeometricVortex = ({ isDark }: { isDark: boolean }) => {
   }, [mouseX, mouseY]);
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden z-[4]">
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden z-[4] will-change-transform" style={{ transform: 'translate3d(0,0,0)' }}>
       <motion.div style={{ rotateY: springX, rotateX: springY }} className="relative w-[800px] h-[800px] flex items-center justify-center">
         {[...Array(3)].map((_, i) => (
           <motion.div
@@ -124,7 +124,7 @@ const GeometricVortex = ({ isDark }: { isDark: boolean }) => {
 
 const HolographicRings = ({ isDark }: { isDark: boolean }) => {
   return (
-    <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-[3]">
+    <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-[3] will-change-transform" style={{ transform: 'translate3d(0,0,0)' }}>
       {[...Array(4)].map((_, i) => (
         <motion.div
           key={i}
@@ -145,7 +145,7 @@ const HolographicRings = ({ isDark }: { isDark: boolean }) => {
 const FloatingEquations = () => {
   const equations = ["E=mc²", "∫f(x)dx", "∇×E", "Φ = (1+√5)/2", "∑n=1", "λ=h/p", "ψ(r,t)"];
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30 z-[6]">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30 z-[6] will-change-transform" style={{ transform: 'translate3d(0,0,0)' }}>
       {equations.map((eq, i) => (
         <motion.div key={i} className="absolute text-indigo-400 font-serif text-sm font-bold italic" style={{ left: `${Math.random() * 80 + 10}%`, top: `${Math.random() * 80 + 10}%` }}
           animate={{ y: [0, -40, 0], opacity: [0, 0.8, 0], rotate: [0, 5, 0] }}
@@ -191,7 +191,7 @@ export default function Hero({ isDark, lang }: { isDark: boolean, lang: Language
   const [hoveredWord, setHoveredWord] = useState<number | null>(null);
 
   const titleWords = ["AIM", "CENTRE", "360"];
-  
+
   const content = {
     en: {
       desc: "Mastering English Medium, Version & Spoken Linguistic Arts. Empowering Tiny Explorers and Children with Special Needs through Sensory-Focused Pedagogy.",
@@ -208,7 +208,7 @@ export default function Hero({ isDark, lang }: { isDark: boolean, lang: Language
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-[#050505] transition-colors duration-700 pb-16 md:pb-20 pt-24 md:pt-32">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-[#050505] transition-colors duration-700 pb-16 md:pb-20 pt-24 md:pt-32" style={{ transform: 'translate3d(0,0,0)', backfaceVisibility: 'hidden' }}>
       <div className="absolute inset-0 z-0">
         <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-b from-black/80 via-transparent to-[#050505]' : 'bg-gradient-to-b from-white/95 via-transparent to-white'} z-10 transition-colors duration-700`} />
         <motion.div style={{ y: yParallax }} className="absolute inset-0">
@@ -221,7 +221,7 @@ export default function Hero({ isDark, lang }: { isDark: boolean, lang: Language
         <div className={`absolute inset-0 ${isDark ? 'bg-[linear-gradient(to_right,#6366f115_1px,transparent_1px),linear-gradient(to_bottom,#6366f115_1px,transparent_1px)]' : 'bg-[linear-gradient(to_right,#6366f020_1px,transparent_1px),linear-gradient(to_bottom,#6366f020_1px,transparent_1px)]'} bg-[size:120px_120px] ${isDark ? 'opacity-60' : 'opacity-90'} [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_80%,transparent_100%)] transition-colors duration-700`} />
       </div>
 
-      <motion.div style={{ opacity: opacityFade }} className="relative z-20 w-full max-w-[100vw] mx-auto px-5 md:px-6 text-center select-none">
+      <motion.div style={{ opacity: opacityFade, transform: 'translate3d(0,0,0)' }} className="relative z-20 w-full max-w-[100vw] mx-auto px-5 md:px-6 text-center select-none layer-gpu">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.5 }} className="mb-6 md:mb-14 flex items-center justify-center gap-4 md:gap-10">
           <motion.div animate={{ width: [0, 40, 40], opacity: [0, 1, 1] }} className={`h-[1px] hidden sm:block ${isDark ? 'bg-indigo-500/70' : 'bg-indigo-500/50'}`} />
           <span className={`text-[10px] md:text-[13px] font-black uppercase tracking-[0.4em] md:tracking-[1em] ${isDark ? 'text-indigo-400 drop-shadow-[0_0_20px_rgba(99,102,241,0.6)]' : 'text-indigo-600'}`}>
@@ -232,22 +232,22 @@ export default function Hero({ isDark, lang }: { isDark: boolean, lang: Language
 
         <div className="mb-8 md:mb-12 py-2 md:py-4 px-2 md:px-4 relative overflow-visible">
           <div className="absolute inset-0 bg-white/5 dark:bg-black/5 backdrop-blur-[2px] pointer-events-none rounded-[2rem] md:rounded-[3rem] -z-10" />
-          <motion.h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[8vw] xl:text-[7.5vw] font-black tracking-tight leading-[1] font-display flex flex-wrap justify-center items-center gap-x-3 md:gap-x-10 text-black dark:text-white transition-colors duration-700 drop-shadow-[0_10px_15px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+          <motion.h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[8vw] xl:text-[7.5vw] font-black tracking-tight leading-[1] font-display flex flex-wrap justify-center items-center gap-x-3 md:gap-x-10 text-black dark:text-white transition-colors duration-700 drop-shadow-[0_10px_15px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] will-change-transform" style={{ backfaceVisibility: 'hidden' }}>
             {titleWords.map((word, i) => (
               <div key={i} className="overflow-visible inline-block">
-                <motion.span 
-                  initial={{ y: 250, opacity: 0 }} 
-                  animate={{ 
-                    y: 0, 
-                    opacity: hoveredWord !== null && hoveredWord !== i ? 0.3 : 1, 
-                    scale: hoveredWord === i ? 1.05 : 1 
+                <motion.span
+                  initial={{ y: 250, opacity: 0 }}
+                  animate={{
+                    y: 0,
+                    opacity: hoveredWord !== null && hoveredWord !== i ? 0.3 : 1,
+                    scale: hoveredWord === i ? 1.05 : 1
                   }}
-                  transition={{ 
-                    y: { duration: 2, delay: 0.8 + (i * 0.18), ease: [0.16, 1, 0.3, 1] }, 
-                    opacity: { duration: 0.4 }, 
-                    scale: { duration: 0.4 } 
+                  transition={{
+                    y: { duration: 2, delay: 0.8 + (i * 0.18), ease: [0.16, 1, 0.3, 1] },
+                    opacity: { duration: 0.4 },
+                    scale: { duration: 0.4 }
                   }}
-                  onMouseEnter={() => setHoveredWord(i)} 
+                  onMouseEnter={() => setHoveredWord(i)}
                   onMouseLeave={() => setHoveredWord(null)}
                   className={`inline-block cursor-default transition-all duration-300 relative px-1 sm:px-3 ${hoveredWord === i ? 'text-indigo-500 dark:text-indigo-400' : ''}`}
                 >
