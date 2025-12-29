@@ -224,7 +224,7 @@ export default function Hero({ isDark, lang }: { isDark: boolean, lang: Language
       <motion.div style={{ opacity: opacityFade, transform: 'translate3d(0,0,0)' }} className="relative z-20 w-full max-w-[100vw] mx-auto px-5 md:px-6 text-center select-none layer-gpu">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.5 }} className="mb-6 md:mb-14 flex items-center justify-center gap-4 md:gap-10">
           <motion.div animate={{ width: [0, 40, 40], opacity: [0, 1, 1] }} className={`h-[1px] hidden sm:block ${isDark ? 'bg-indigo-500/70' : 'bg-indigo-500/50'}`} />
-          <span className={`text-[10px] md:text-[13px] font-black uppercase tracking-[0.4em] md:tracking-[1em] ${isDark ? 'text-indigo-400 drop-shadow-[0_0_20px_rgba(99,102,241,0.6)]' : 'text-indigo-600'}`}>
+          <span className={`text-[10px] md:text-[13px] font-black uppercase ${lang === 'bn' ? 'tracking-normal font-bangla text-base' : 'tracking-[0.4em] md:tracking-[1em]'} ${isDark ? 'text-indigo-400 drop-shadow-[0_0_20px_rgba(99,102,241,0.6)]' : 'text-indigo-600'}`}>
             Aim High, Achieve Infinity
           </span>
           <motion.div animate={{ width: [0, 40, 40], opacity: [0, 1, 1] }} className={`h-[1px] hidden sm:block ${isDark ? 'bg-indigo-500/70' : 'bg-indigo-500/50'}`} />
@@ -232,7 +232,7 @@ export default function Hero({ isDark, lang }: { isDark: boolean, lang: Language
 
         <div className="mb-8 md:mb-12 py-2 md:py-4 px-2 md:px-4 relative overflow-visible">
           <div className="absolute inset-0 bg-white/5 dark:bg-black/5 backdrop-blur-[2px] pointer-events-none rounded-[2rem] md:rounded-[3rem] -z-10" />
-          <motion.h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[8vw] xl:text-[7.5vw] font-black tracking-tight leading-[1] font-display flex flex-wrap justify-center items-center gap-x-3 md:gap-x-10 text-black dark:text-white transition-colors duration-700 drop-shadow-[0_10px_15px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] will-change-transform" style={{ backfaceVisibility: 'hidden' }}>
+          <motion.h1 className={`${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-tight font-display'} text-4xl sm:text-6xl md:text-7xl lg:text-[8vw] xl:text-[7.5vw] font-black leading-[1] flex flex-wrap justify-center items-center gap-x-3 md:gap-x-10 text-black dark:text-white transition-colors duration-700 drop-shadow-[0_10px_15px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] will-change-transform`} style={{ backfaceVisibility: 'hidden' }}>
             {titleWords.map((word, i) => (
               <div key={i} className="overflow-visible inline-block">
                 <motion.span
@@ -258,19 +258,19 @@ export default function Hero({ isDark, lang }: { isDark: boolean, lang: Language
           </motion.h1>
         </div>
 
-        <motion.p initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.8, delay: 2 }} className={`text-sm sm:text-base md:text-xl lg:text-2xl ${isDark ? 'text-gray-200/90 drop-shadow-2xl' : 'text-gray-800'} max-w-4xl mx-auto mb-10 md:mb-20 leading-relaxed font-light tracking-tight transition-colors duration-700 px-2`}>
+        <motion.p initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.8, delay: 2 }} className={`text-sm sm:text-base md:text-xl lg:text-2xl ${isDark ? 'text-gray-200/90 drop-shadow-2xl' : 'text-gray-800'} max-w-4xl mx-auto mb-10 md:mb-20 leading-relaxed font-light ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-tight'} transition-colors duration-700 px-2`}>
           {content[lang].desc}
         </motion.p>
 
         <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.8, delay: 2.4 }} className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 px-4">
-          <MagneticButton className="group relative w-full sm:w-auto px-10 md:px-16 py-5 md:py-8 bg-black text-white dark:bg-white dark:text-black text-[10px] md:text-[13px] font-black uppercase tracking-[0.3em] md:tracking-[0.5em] rounded-full overflow-hidden transition-all hover:scale-110 active:scale-95 shadow-2xl">
+          <MagneticButton className={`group relative w-full sm:w-auto px-10 md:px-16 py-5 md:py-8 bg-black text-white dark:bg-white dark:text-black text-[10px] md:text-[13px] font-black uppercase ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-[0.3em] md:tracking-[0.5em]'} rounded-full overflow-hidden transition-all hover:scale-110 active:scale-95 shadow-2xl`}>
             <span className="relative z-10">{content[lang].enroll}</span>
             <div className="absolute inset-0 bg-indigo-600 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700 ease-[0.16,1,0.3,1]" />
             <motion.span whileHover={{ x: 5 }} className="absolute right-6 md:right-10 opacity-0 group-hover:opacity-100 transition-all duration-700 translate-x-10 group-hover:translate-x-0 hidden sm:block">
               <svg width="20" height="20" className="md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </motion.span>
           </MagneticButton>
-          <MagneticButton className={`w-full sm:w-auto px-10 md:px-16 py-5 md:py-8 ${isDark ? 'glass text-white' : 'light-glass text-black'} text-[10px] md:text-[13px] font-black uppercase tracking-[0.3em] md:tracking-[0.5em] rounded-full hover:bg-black/5 dark:hover:bg-white/20 hover:scale-110 transition-all group active:scale-95 border border-transparent hover:border-indigo-400/60 transition-colors duration-700 drop-shadow-[0_10px_20px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_10px_20px_rgba(0,0,0,0.3)]`}>
+          <MagneticButton className={`w-full sm:w-auto px-10 md:px-16 py-5 md:py-8 ${isDark ? 'glass text-white' : 'light-glass text-black'} text-[10px] md:text-[13px] font-black uppercase ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-[0.3em] md:tracking-[0.5em]'} rounded-full hover:bg-black/5 dark:hover:bg-white/20 hover:scale-110 transition-all group active:scale-95 border border-transparent hover:border-indigo-400/60 transition-colors duration-700 drop-shadow-[0_10px_20px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_10px_20px_rgba(0,0,0,0.3)]`}>
             <span className="group-hover:text-indigo-400 transition-colors">{content[lang].counsel}</span>
           </MagneticButton>
         </motion.div>
@@ -282,7 +282,7 @@ export default function Hero({ isDark, lang }: { isDark: boolean, lang: Language
         <div className={`relative w-[1px] h-10 md:h-20 ${isDark ? 'bg-gradient-to-b from-indigo-500/90 via-indigo-500/10 to-transparent' : 'bg-gradient-to-b from-indigo-500/70 via-indigo-500/10 to-transparent'}`}>
           <motion.div animate={{ top: ["0%", "88%", "0%"] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }} className={`absolute left-[-2px] w-[5px] h-3 md:h-6 bg-indigo-400 rounded-full ${isDark ? 'shadow-[0_0_30px_rgba(129,140,241,1)]' : 'shadow-[0_0_20px_rgba(99,102,241,0.6)]'}`} />
         </div>
-        <span className={`text-[7px] md:text-[10px] font-black uppercase tracking-[0.8em] md:tracking-[1em] ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>{content[lang].scroll}</span>
+        <span className={`text-[7px] md:text-[10px] font-black uppercase ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-[0.8em] md:tracking-[1em]'} ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>{content[lang].scroll}</span>
       </motion.div>
       <div className={`absolute bottom-0 left-0 right-0 h-48 md:h-96 ${isDark ? 'bg-gradient-to-t from-[#050505] to-transparent' : 'bg-gradient-to-t from-white to-transparent'} z-20 pointer-events-none transition-colors duration-700`} />
     </section>

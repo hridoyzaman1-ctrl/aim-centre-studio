@@ -79,21 +79,21 @@ const LevelCard: React.FC<{ level: string, title: string, description: string, i
   };
 
   return (
-    <motion.div 
-      ref={cardRef} 
-      onMouseMove={handleMouseMove} 
-      onMouseLeave={() => { mouseX.set(0); mouseY.set(0); }} 
+    <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => { mouseX.set(0); mouseY.set(0); }}
       onKeyDown={handleKeyDown}
-      style={{ rotateX: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : rotateX, rotateY: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : rotateY, transformStyle: "preserve-3d" }} 
-      initial={{ opacity: 0, y: 60, scale: 0.95 }} 
-      whileInView={{ opacity: 1, y: 0, scale: 1 }} 
-      transition={{ delay: idx * 0.1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }} 
+      style={{ rotateX: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : rotateX, rotateY: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : rotateY, transformStyle: "preserve-3d" }}
+      initial={{ opacity: 0, y: 60, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ delay: idx * 0.1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -10, scale: 1.01 }}
       role="button"
       tabIndex={0}
       aria-label={`${level}: ${title}. ${description}`}
-      className="group relative min-h-[500px] md:min-h-[660px] bg-slate-50 dark:bg-[#080808] border border-black/[0.03] dark:border-white/10 rounded-[2.5rem] md:rounded-[4rem] lg:rounded-[5rem] p-10 md:p-14 overflow-hidden flex flex-col justify-between shadow-3xl transition-all duration-700 hover:border-indigo-500/60 focus:ring-4 focus:ring-indigo-500 outline-none"
+      className="group relative min-h-[500px] md:min-h-[660px] bg-slate-50 dark:bg-[#080808] border border-black/10 dark:border-white/10 rounded-[2.5rem] md:rounded-[4rem] lg:rounded-[5rem] p-10 md:p-14 overflow-hidden flex flex-col justify-between shadow-3xl transition-all duration-700 hover:border-indigo-500/60 focus:ring-4 focus:ring-indigo-500 outline-none"
     >
       <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-30 transition-opacity duration-1000 bg-indigo-500 blur-[120px] md:blur-[150px]" />
       <div className="relative z-10 flex flex-col items-center justify-center flex-grow mb-8 transition-transform duration-700 group-hover:scale-105 md:group-hover:scale-110" style={{ transform: "translateZ(60px)" }}>
@@ -158,19 +158,19 @@ const SpecialNeedsSection: React.FC<{ lang: Language }> = ({ lang }) => {
           <div className="lg:col-span-8">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex items-center gap-4 md:gap-8 mb-6 md:mb-10">
               <motion.div initial={{ width: 0 }} whileInView={{ width: 60 }} transition={{ duration: 1.2 }} className="h-[2px] bg-indigo-500" />
-              <span id="special-needs-heading" className="text-[12px] md:text-[14px] font-black tracking-[0.4em] md:tracking-[0.6em] text-indigo-500 uppercase">{current.tag}</span>
+              <span id="special-needs-heading" className={`text-[12px] md:text-[14px] font-black ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-[0.4em] md:tracking-[0.6em]'} text-indigo-500 uppercase`}>{current.tag}</span>
             </motion.div>
-            <motion.h2 
-              initial={{ opacity: 0, y: 30 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} 
-              viewport={{ once: true }} 
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true }}
               className="text-4xl md:text-7xl lg:text-6xl xl:text-[5.5vw] font-black tracking-tight leading-[0.95] md:leading-[0.88] text-black dark:text-white transition-colors duration-700 uppercase mb-8 md:mb-12 drop-shadow-2xl"
             >
               {lang === 'en' ? 'THE POWER OF' : ''} <br className="hidden lg:block" />
-              <span className="text-indigo-600 dark:text-indigo-400 block lg:inline-block whitespace-normal">{lang === 'en' ? 'NEURODIVERSITY' : current.title}</span>
+              <span className={`text-indigo-600 dark:text-indigo-400 block lg:inline-block whitespace-normal ${lang === 'bn' ? 'tracking-normal font-bangla' : ''}`}>{lang === 'en' ? 'NEURODIVERSITY' : current.title}</span>
             </motion.h2>
-            <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.4 }} viewport={{ once: true }} className="text-lg md:text-2xl text-gray-700 dark:text-gray-400 font-light leading-relaxed max-w-3xl mb-4">{current.desc}</motion.p>
+            <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.4 }} viewport={{ once: true }} className={`text-lg md:text-2xl text-gray-700 dark:text-gray-400 font-light leading-relaxed max-w-3xl mb-4 ${lang === 'bn' ? 'tracking-normal font-bangla' : ''}`}>{current.desc}</motion.p>
           </div>
           <div className="lg:col-span-4 relative mt-10 lg:mt-0">
             <motion.div style={{ y: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : useTransform(scrollYProgress, [0, 1], [0, -200]) }} className="aspect-square rounded-[2.5rem] md:rounded-[4rem] lg:rounded-[5rem] overflow-hidden border border-black/5 dark:border-white/10 shadow-3xl bg-slate-50 dark:bg-black group relative">
@@ -187,14 +187,14 @@ const SpecialNeedsSection: React.FC<{ lang: Language }> = ({ lang }) => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-16">
           {current.levels.map((item, idx) => (<LevelCard key={idx} {...item} idx={idx} />))}
         </div>
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} 
-          className="mt-24 md:mt-48 p-10 md:p-24 rounded-[3rem] md:rounded-[5rem] lg:rounded-[6.5rem] relative overflow-hidden bg-slate-50 dark:bg-[#080808] border border-black/[0.03] dark:border-white/10 shadow-3xl flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 transition-all duration-700 hover:border-indigo-500/40"
+        <motion.div
+          initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }}
+          className="mt-24 md:mt-48 p-10 md:p-24 rounded-[3rem] md:rounded-[5rem] lg:rounded-[6.5rem] relative overflow-hidden bg-slate-50 dark:bg-[#080808] border border-black/10 dark:border-white/10 shadow-3xl flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 transition-all duration-700 hover:border-indigo-500/40"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] to-transparent pointer-events-none" aria-hidden="true" />
           <div className="max-w-xl relative z-10 text-center lg:text-left">
-            <h5 className="text-2xl md:text-4xl font-black uppercase tracking-tighter mb-4 md:mb-8 text-black dark:text-white transition-colors">{current.footerTitle}</h5>
-            <p className="text-gray-700 dark:text-gray-400 text-base md:text-xl leading-relaxed font-light">{current.footerDesc}</p>
+            <h5 className={`text-2xl md:text-4xl font-black uppercase ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-tighter'} mb-4 md:mb-8 text-black dark:text-white transition-colors`}>{current.footerTitle}</h5>
+            <p className={`text-gray-700 dark:text-gray-400 text-base md:text-xl leading-relaxed font-light ${lang === 'bn' ? 'tracking-normal font-bangla' : ''}`}>{current.footerDesc}</p>
           </div>
           <div className="flex flex-wrap gap-3 md:gap-6 justify-center relative z-10">
             {current.tags.map((tag, i) => (<motion.span key={i} whileHover={{ scale: 1.1, y: -5 }} className="px-6 md:px-12 py-3 md:py-6 bg-white dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl md:rounded-3xl text-[9px] md:text-[12px] font-black uppercase tracking-widest text-indigo-500 transition-all cursor-default backdrop-blur-xl shadow-lg">{tag}</motion.span>))}

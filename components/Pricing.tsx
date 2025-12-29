@@ -50,14 +50,13 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan, i, current, lang }) => 
         rotateY,
         transformStyle: "preserve-3d",
       }}
-      className={`relative group flex flex-col p-8 md:p-12 lg:p-14 rounded-[2.5rem] md:rounded-[4rem] border transition-all duration-500 cursor-pointer ${
-        plan.popular 
-          ? 'border-indigo-500/50 bg-indigo-500/[0.03] shadow-[0_20px_50px_rgba(99,102,241,0.15)]' 
-          : 'border-black/[0.05] dark:border-white/10 bg-slate-50 dark:bg-[#080808] hover:border-indigo-500/30'
-      }`}
+      className={`relative group flex flex-col p-8 md:p-12 lg:p-14 rounded-[2.5rem] md:rounded-[4rem] border transition-all duration-500 cursor-pointer ${plan.popular
+        ? 'border-indigo-500/50 bg-indigo-500/[0.03] shadow-[0_20px_50px_rgba(99,102,241,0.15)]'
+        : 'border-black/10 dark:border-white/10 bg-slate-50 dark:bg-[#080808] hover:border-indigo-500/30'
+        }`}
     >
       {/* Dynamic Background Glow */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0"
         style={{
           background: useTransform(
@@ -68,7 +67,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan, i, current, lang }) => 
       />
 
       {plan.popular && (
-        <motion.div 
+        <motion.div
           initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           className="absolute -top-5 left-1/2 -translate-x-1/2 px-6 py-2 bg-indigo-500 text-white text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] rounded-full shadow-lg z-20 flex items-center gap-2"
@@ -80,11 +79,11 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan, i, current, lang }) => 
 
       <div style={{ transform: "translateZ(50px)" }} className="relative z-10">
         <div className="mb-8 md:mb-12">
-          <h3 className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] text-gray-400 dark:text-gray-500 mb-4 group-hover:text-indigo-500 transition-colors">
+          <h3 className={`text-[10px] md:text-[11px] font-black uppercase ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-[0.4em]'} text-gray-400 dark:text-gray-500 mb-4 group-hover:text-indigo-500 transition-colors`}>
             {plan.name}
           </h3>
           <div className="flex flex-col items-baseline gap-1">
-            <motion.span 
+            <motion.span
               className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-black dark:text-white"
             >
               {plan.price}
@@ -97,35 +96,34 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan, i, current, lang }) => 
 
         <div className="flex-grow space-y-5 md:space-y-6 mb-12">
           {plan.features.map((f: string, idx: number) => (
-            <motion.div 
-              key={idx} 
+            <motion.div
+              key={idx}
               className="flex items-start gap-4 group/item"
               whileHover={{ x: 5 }}
             >
               <div className="mt-1 w-5 h-5 rounded-full bg-indigo-500/10 flex items-center justify-center text-indigo-500 group-hover/item:bg-indigo-500 group-hover/item:text-white transition-all duration-300">
                 <Check size={12} strokeWidth={4} />
               </div>
-              <span className="text-sm md:text-base font-medium text-gray-600 dark:text-gray-400 group-hover/item:text-black dark:group-hover/item:text-white transition-colors">
+              <span className={`text-sm md:text-base font-medium text-gray-600 dark:text-gray-400 group-hover/item:text-black dark:group-hover/item:text-white transition-colors ${lang === 'bn' ? 'tracking-normal font-bangla' : ''}`}>
                 {f}
               </span>
             </motion.div>
           ))}
         </div>
 
-        <motion.button 
-          whileHover={{ scale: 1.05, backgroundColor: plan.popular ? '#4f46e5' : '#6366f1', color: '#fff' }} 
-          whileTap={{ scale: 0.95 }} 
-          className={`group/btn w-full py-5 md:py-6 rounded-[1.5rem] md:rounded-[2rem] text-[11px] md:text-[12px] font-black uppercase tracking-[0.4em] transition-all flex items-center justify-center gap-3 shadow-xl overflow-hidden relative ${
-            plan.popular 
-              ? 'bg-indigo-500 text-white' 
-              : 'bg-black text-white dark:bg-white dark:text-black'
-          }`}
+        <motion.button
+          whileHover={{ scale: 1.05, backgroundColor: plan.popular ? '#4f46e5' : '#6366f1', color: '#fff' }}
+          whileTap={{ scale: 0.95 }}
+          className={`group/btn w-full py-5 md:py-6 rounded-[1.5rem] md:rounded-[2rem] text-[11px] md:text-[12px] font-black uppercase ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-[0.4em]'} transition-all flex items-center justify-center gap-3 shadow-xl overflow-hidden relative ${plan.popular
+            ? 'bg-indigo-500 text-white'
+            : 'bg-black text-white dark:bg-white dark:text-black'
+            }`}
         >
           <span className="relative z-10">{current.btn}</span>
           <ArrowRight size={18} className="relative z-10 transition-transform group-hover/btn:translate-x-2" />
-          
+
           {/* Button Shine Effect */}
-          <motion.div 
+          <motion.div
             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg] translate-x-[-150%]"
             animate={{ translateX: ['-150%', '150%'] }}
             transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 3 }}
@@ -138,14 +136,14 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan, i, current, lang }) => 
 
 const Pricing: React.FC<{ lang: Language }> = ({ lang }) => {
   const sectionRef = useRef<HTMLElement>(null);
-  const mouseX = useMotionValue(0); 
+  const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const handleMouseMove = (e: React.MouseEvent) => { 
-    if (!sectionRef.current || window.innerWidth < 1024) return; 
-    const rect = sectionRef.current.getBoundingClientRect(); 
-    mouseX.set(e.clientX - rect.left); 
-    mouseY.set(e.clientY - rect.top); 
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!sectionRef.current || window.innerWidth < 1024) return;
+    const rect = sectionRef.current.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
   };
 
   const content = {
@@ -178,22 +176,22 @@ const Pricing: React.FC<{ lang: Language }> = ({ lang }) => {
   const current = content[lang];
 
   return (
-    <section 
-      ref={sectionRef} 
-      onMouseMove={handleMouseMove} 
+    <section
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
       className="py-24 md:py-40 lg:py-64 bg-white dark:bg-[#050505] transition-colors duration-700 relative overflow-hidden"
     >
       {/* Global Section Background Glow */}
-      <motion.div 
-        className="absolute inset-0 z-0 pointer-events-none opacity-50 dark:opacity-30" 
-        style={{ 
+      <motion.div
+        className="absolute inset-0 z-0 pointer-events-none opacity-50 dark:opacity-30"
+        style={{
           background: useTransform(
-            [mouseX, mouseY], 
+            [mouseX, mouseY],
             ([x, y]) => `radial-gradient(800px circle at ${x}px ${y}px, rgba(99, 102, 241, 0.1), transparent 80%)`
-          ) 
-        }} 
+          )
+        }}
       />
-      
+
       <div className="max-w-screen-2xl mx-auto px-6 md:px-12 relative z-10">
         <div className="text-center mb-20 md:mb-32">
           <motion.div
@@ -202,13 +200,13 @@ const Pricing: React.FC<{ lang: Language }> = ({ lang }) => {
             viewport={{ once: true }}
             className="flex flex-col items-center gap-6"
           >
-            <span className="text-[10px] md:text-[12px] font-black tracking-[0.5em] text-indigo-500 uppercase">
+            <span className={`text-[10px] md:text-[12px] font-black ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-[0.5em]'} text-indigo-500 uppercase`}>
               {current.tag}
             </span>
-            <h2 className="text-4xl md:text-8xl lg:text-9xl font-black tracking-tight text-black dark:text-white uppercase leading-none">
+            <h2 className={`text-4xl md:text-8xl lg:text-9xl font-black ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-tight'} text-black dark:text-white uppercase leading-none`}>
               {current.title}
             </h2>
-            <p className="text-lg md:text-2xl text-gray-500 dark:text-gray-400 max-w-2xl font-light leading-relaxed">
+            <p className={`text-lg md:text-2xl text-gray-500 dark:text-gray-400 max-w-2xl font-light leading-relaxed ${lang === 'bn' ? 'tracking-normal font-bangla' : ''}`}>
               {current.desc}
             </p>
           </motion.div>
@@ -216,12 +214,12 @@ const Pricing: React.FC<{ lang: Language }> = ({ lang }) => {
 
         <div className="grid lg:grid-cols-3 gap-8 md:gap-12">
           {current.plans.map((plan, i) => (
-            <PricingCard 
-              key={i} 
-              plan={plan} 
-              i={i} 
-              current={current} 
-              lang={lang} 
+            <PricingCard
+              key={i}
+              plan={plan}
+              i={i}
+              current={current}
+              lang={lang}
             />
           ))}
         </div>

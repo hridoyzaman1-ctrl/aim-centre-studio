@@ -1,82 +1,98 @@
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AIM Centre 360 | Aim High, Achieve Infinity</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            fontFamily: {
-              display: ['Inter', 'sans-serif'],
-            },
-            maxWidth: {
-              '8xl': '1920px',
-            }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIM Centre 360 | Aim High, Achieve Infinity</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Inter', 'sans-serif'],
+            bangla: ['Hind Siliguri', 'sans-serif'],
           },
+          maxWidth: {
+            '8xl': '1920px',
+          }
         },
-      }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        --accent: #6366f1;
-      }
-      html {
-        scroll-padding-top: 100px;
-      }
-      body {
-        font-family: 'Inter', sans-serif;
-        margin: 0;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-        transition: background-color 0.5s ease, color 0.5s ease;
-      }
-      .theme-transition * {
-        transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease, opacity 0.5s ease !important;
-      }
-      ::selection {
-        background: var(--accent);
-        color: white;
-      }
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #f8fafc;
-      }
-      .dark ::-webkit-scrollbar-track {
-        background: #080808;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 20px;
-        border: 2px solid transparent;
-        background-clip: content-box;
-      }
-      .dark ::-webkit-scrollbar-thumb {
-        background: #27272a;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: var(--accent);
-      }
-      .glass {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      .light-glass {
-        background: rgba(0, 0, 0, 0.02);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(0, 0, 0, 0.05);
-      }
-    </style>
-    <script type="importmap">
+      },
+    }
+  </script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --accent: #6366f1;
+    }
+
+    html {
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    .theme-transition * {
+      transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease, opacity 0.5s ease !important;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: white;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f8fafc;
+    }
+
+    .dark ::-webkit-scrollbar-track {
+      background: #080808;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 20px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+    }
+
+    .dark ::-webkit-scrollbar-thumb {
+      background: #27272a;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .light-glass {
+      background: rgba(0, 0, 0, 0.02);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+  </style>
+  <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@^19.2.3",
@@ -89,9 +105,11 @@
   }
 }
 </script>
-  </head>
-  <body class="bg-white text-black dark:bg-[#050505] dark:text-white transition-colors duration-500">
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-  </body>
+</head>
+
+<body class="bg-white text-black dark:bg-[#050505] dark:text-white transition-colors duration-500">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
 </html>

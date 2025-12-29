@@ -11,7 +11,7 @@ const TestimonialCard: React.FC<{ testimonial: any, idx: number }> = ({ testimon
       transition={{ duration: 1, delay: idx * 0.1 }}
       viewport={{ once: true }}
       whileHover={{ y: -10, scale: 1.02 }}
-      className="relative bg-slate-50 dark:bg-[#0a0a0a] rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-16 border border-black/[0.03] dark:border-white/5 shadow-2xl overflow-hidden group"
+      className="relative bg-slate-50 dark:bg-[#0a0a0a] rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-16 border border-black/10 dark:border-white/5 shadow-2xl overflow-hidden group"
     >
       <div className="absolute top-6 md:top-10 right-6 md:right-10 text-indigo-500/10 group-hover:text-indigo-500/20 transition-colors duration-700">
         <Quote className="w-12 h-12 md:w-20 md:h-20" strokeWidth={3} />
@@ -23,10 +23,10 @@ const TestimonialCard: React.FC<{ testimonial: any, idx: number }> = ({ testimon
           </div>
           <div>
             <h5 className="text-base md:text-lg font-black uppercase tracking-tight text-black dark:text-white mb-0.5 md:mb-1">{testimonial.author}</h5>
-            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-indigo-500">{testimonial.role}</span>
+            <span className={`text-[9px] md:text-[10px] font-black uppercase tracking-widest text-indigo-500 ${testimonial.role && /[^\x00-\x7F]/.test(testimonial.role) ? 'font-bangla tracking-normal' : ''}`}>{testimonial.role}</span>
           </div>
         </div>
-        <p className="text-lg md:text-2xl text-gray-600 dark:text-gray-400 font-light leading-relaxed italic group-hover:text-black dark:group-hover:text-white transition-colors duration-500">
+        <p className={`text-lg md:text-2xl text-gray-600 dark:text-gray-400 font-light leading-relaxed italic group-hover:text-black dark:group-hover:text-white transition-colors duration-500 ${testimonial.text && /[^\x00-\x7F]/.test(testimonial.text) ? 'font-bangla tracking-normal' : ''}`}>
           "{testimonial.text}"
         </p>
       </div>
@@ -45,19 +45,19 @@ const Testimonials: React.FC<{ lang: Language }> = ({ lang }) => {
       tag: "Voices of Success",
       title: "WHAT OUR COMMUNITY SAYS",
       items: [
-        { 
+        {
           text: "My son found a sanctuary here. The 1:1 mentor ratio changed everything. His sensory needs are finally understood.",
           author: "Mrs. Sarah Khan",
           role: "PARENT (L2 SUPPORT)",
           img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200"
         },
-        { 
+        {
           text: "The linguistic program is world-class. I achieved my IELTS goals in just 3 months through their immersive methodology.",
           author: "Ahsan Habib",
           role: "UNIVERSITY TRACK STUDENT",
           img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200"
         },
-        { 
+        {
           text: "The sensory lab is a game changer for children with neurodiversity. The psychological guidance is truly data-driven.",
           author: "Dr. Faisal Ahmed",
           role: "PSYCHOLOGIST & PARENT",
@@ -69,19 +69,19 @@ const Testimonials: React.FC<{ lang: Language }> = ({ lang }) => {
       tag: "সাফল্যের কণ্ঠস্বর",
       title: "আমাদের কমিউনিটি যা বলছে",
       items: [
-        { 
+        {
           text: "আমার ছেলে এখানে একটি নিরাপদ আশ্রয় খুঁজে পেয়েছে। ১:১ মেন্টর অনুপাত সবকিছু বদলে দিয়েছে। তার সেন্সরি প্রয়োজনগুলো অবশেষে বোঝা হচ্ছে।",
           author: "মিসেস সারাহ খান",
           role: "অভিভাবক (L2 সাপোর্ট)",
           img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200"
         },
-        { 
+        {
           text: "লিঙ্গুইস্টিক প্রোগ্রামটি বিশ্বমানের। আমি তাদের ইমারসিভ মেথডলজির মাধ্যমে মাত্র ৩ মাসে আমার আইইএলটিএস লক্ষ্য অর্জন করেছি।",
           author: "আহসান হাবিব",
           role: "ইউনিভার্সিটি ট্র্যাক শিক্ষার্থী",
           img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200"
         },
-        { 
+        {
           text: "নিউরোডাইভারসিটি সম্পন্ন শিশুদের জন্য সেন্সরি ল্যাব একটি আমূল পরিবর্তনকারী। মনস্তাত্ত্বিক নির্দেশনাটি সত্যিই ডেটা-চালিত।",
           author: "ডাঃ ফয়সাল আহমেদ",
           role: "মনোবিজ্ঞানী এবং অভিভাবক",
@@ -103,10 +103,10 @@ const Testimonials: React.FC<{ lang: Language }> = ({ lang }) => {
         <div className="text-center mb-16 md:mb-32">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="flex items-center justify-center gap-6 md:gap-8 mb-6 md:mb-10">
             <div className="w-8 md:w-16 h-[1px] bg-indigo-500/30" />
-            <span className="text-[10px] md:text-[12px] font-black tracking-[0.4em] md:tracking-[0.6em] text-indigo-500 uppercase">{current.tag}</span>
+            <span className={`text-[10px] md:text-[12px] font-black ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-[0.4em] md:tracking-[0.6em]'} text-indigo-500 uppercase`}>{current.tag}</span>
             <div className="w-8 md:w-16 h-[1px] bg-indigo-500/30" />
           </motion.div>
-          <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1.2 }} viewport={{ once: true }} className="text-4xl md:text-8xl lg:text-[7vw] font-black tracking-tight leading-[0.95] md:leading-[0.9] text-black dark:text-white uppercase mb-8 md:mb-12 drop-shadow-2xl">
+          <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1.2 }} viewport={{ once: true }} className={`text-4xl md:text-8xl lg:text-[7vw] font-black ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-tight'} leading-[0.95] md:leading-[0.9] text-black dark:text-white uppercase mb-8 md:mb-12 drop-shadow-2xl`}>
             {current.title}
           </motion.h2>
         </div>
