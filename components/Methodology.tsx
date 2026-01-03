@@ -42,7 +42,7 @@ const Methodology: React.FC<{ lang: Language }> = ({ lang }) => {
   const current = content[lang];
 
   return (
-    <section ref={containerRef} className="py-24 md:py-64 bg-white dark:bg-[#050505] overflow-hidden transition-colors duration-500 relative">
+    <section ref={containerRef} className="py-24 md:py-32 bg-white dark:bg-[#050505] overflow-hidden transition-colors duration-500 relative">
       <div className="max-w-screen-2xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-start gap-16 md:gap-24 lg:gap-40">
         <div className="w-full lg:w-1/2 lg:sticky lg:top-40">
           <motion.div style={{ opacity: typeof window !== 'undefined' && window.innerWidth < 1024 ? 1 : textOpacity }}>
@@ -89,7 +89,7 @@ const Methodology: React.FC<{ lang: Language }> = ({ lang }) => {
       </div>
 
       {/* Seamless background blend glow */}
-      <div className="absolute bottom-0 left-0 right-0 h-48 md:h-96 bg-gradient-to-t from-[#050505] to-transparent pointer-events-none opacity-40" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 md:h-96 bg-gradient-to-t from-white dark:from-[#050505] to-transparent pointer-events-none opacity-40" />
     </section>
   );
 };

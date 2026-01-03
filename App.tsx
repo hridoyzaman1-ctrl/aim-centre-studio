@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import StatsSection from './components/StatsSection';
-import Features from './components/Features';
-import Methodology from './components/Methodology';
-import SpecialNeedsSection from './components/SpecialNeedsSection';
-import CounselingSection from './components/CounselingSection';
-import Testimonials from './components/Testimonials';
-import Pricing from './components/Pricing';
-import AuthSection from './components/AuthSection';
+import Home from './components/Home';
+import AuthPage from './components/AuthPage';
 import Footer from './components/Footer';
 
 export type Language = 'en' | 'bn';
@@ -54,16 +48,22 @@ const App: React.FC = () => {
     } else {
       html.classList.remove('dark');
     }
-    
+
+    // Smooth scroll for anchor links
     const handleAnchorClick = function (this: HTMLAnchorElement, e: MouseEvent) {
       const href = this.getAttribute('href');
       if (href && href.startsWith('#')) {
-        e.preventDefault();
-        // Only attempt to query if the href has more than just the # character
+        // If we are NOT on the home page (e.g. login page), and the link is just a hash, 
+        // we might want to navigate home first. But native <a> tags handles this if href="/" 
+        // We are using href="#id".
+        // If we are on /login, element with #id won't exist.
+        // We need to handle this in Navbar. Global <a> handler might fail.
+        // But for now keeping the behavior if elements exist.
         if (href.length > 1) {
           try {
             const target = document.querySelector(href);
             if (target) {
+              e.preventDefault();
               target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -72,9 +72,6 @@ const App: React.FC = () => {
           } catch (err) {
             console.warn(`Could not navigate to ${href}: Invalid selector`);
           }
-        } else {
-          // If just '#', scroll to top
-          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }
     };
@@ -104,43 +101,19 @@ const App: React.FC = () => {
 
   return (
     <div className={`min-h-screen transition-colors duration-700 bg-white text-black dark:bg-[#050505] dark:text-white selection:bg-indigo-500 overflow-x-hidden`}>
-      <Navbar isDark={isDark} toggleTheme={toggleTheme} lang={lang} toggleLang={toggleLang} />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Navbar isDark={isDark} toggleTheme={toggleTheme} lang={lang} toggleLang={toggleLang} />
+            <main className="relative" role="main">
+              <Home isDark={isDark} lang={lang} />
+            </main>
+            <Footer lang={lang} />
+          </>
+        } />
+        <Route path="/login" element={<AuthPage lang={lang} />} />
+      </Routes>
       <BackToTop />
-      
-      <main className="relative" role="main">
-        <Hero isDark={isDark} lang={lang} />
-        
-        <div className="relative z-10">
-          <StatsSection lang={lang} />
-          
-          <section id="technology" aria-labelledby="technology-heading">
-            <Features lang={lang} />
-          </section>
-
-          <section id="methodology" aria-labelledby="methodology-heading">
-            <Methodology lang={lang} />
-          </section>
-
-          <section id="special-needs" aria-labelledby="special-needs-heading">
-            <SpecialNeedsSection lang={lang} />
-          </section>
-
-          <section id="testimonials" aria-labelledby="testimonials-heading">
-            <Testimonials lang={lang} />
-          </section>
-
-          <section id="counseling" aria-labelledby="counseling-heading">
-            <CounselingSection lang={lang} />
-          </section>
-
-          <section id="pricing" aria-labelledby="pricing-heading">
-            <Pricing lang={lang} />
-          </section>
-
-          <AuthSection lang={lang} />
-        </div>
-      </main>
-      <Footer lang={lang} />
     </div>
   );
 };

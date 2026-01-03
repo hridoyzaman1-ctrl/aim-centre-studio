@@ -94,7 +94,7 @@ const Testimonials: React.FC<{ lang: Language }> = ({ lang }) => {
   const current = content[lang];
 
   return (
-    <section ref={containerRef} className="py-24 md:py-64 bg-white dark:bg-[#050505] transition-colors duration-700 overflow-hidden relative">
+    <section ref={containerRef} className="py-24 md:py-32 bg-white dark:bg-[#050505] transition-colors duration-700 overflow-hidden relative">
       <motion.div style={{ y: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : yParallax }} className="absolute inset-0 pointer-events-none opacity-20 dark:opacity-30">
         <div className="absolute top-1/2 left-0 w-[80vw] md:w-[40vw] h-[80vw] md:h-[40vw] bg-indigo-500/10 blur-[100px] md:blur-[150px] rounded-full" />
         <div className="absolute top-1/4 right-0 w-[70vw] md:w-[30vw] h-[70vw] md:h-[30vw] bg-indigo-600/10 blur-[80px] md:blur-[120px] rounded-full" />

@@ -169,7 +169,7 @@ const Features: React.FC<{ lang: Language }> = ({ lang }) => {
   const current = content[lang];
 
   return (
-    <section className="py-24 md:py-64 bg-white dark:bg-[#050505] transition-colors duration-700 overflow-hidden">
+    <section className="py-24 md:py-32 bg-white dark:bg-[#050505] transition-colors duration-700 overflow-hidden">
       <div className="max-w-screen-2xl mx-auto px-6 md:px-12 lg:px-20">
         <div className="flex flex-col lg:flex-row justify-between lg:items-end mb-16 md:mb-32 gap-10 md:gap-16">
           <div className="max-w-3xl">

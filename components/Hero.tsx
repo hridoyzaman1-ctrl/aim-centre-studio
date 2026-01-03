@@ -1,5 +1,6 @@
 import React, { useMemo, useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Language } from '../App';
 
 const DeepNeuralNetwork = ({ isDark }: { isDark: boolean }) => {
@@ -185,6 +186,7 @@ const CursorGlow = ({ isDark }: { isDark: boolean }) => {
 };
 
 export default function Hero({ isDark, lang }: { isDark: boolean, lang: Language }) {
+  const navigate = useNavigate();
   const { scrollY } = useScroll();
   const yParallax = useTransform(scrollY, [0, 1000], [0, 400]);
   const opacityFade = useTransform(scrollY, [0, 800], [1, 0]);
@@ -262,16 +264,16 @@ export default function Hero({ isDark, lang }: { isDark: boolean, lang: Language
           {content[lang].desc}
         </motion.p>
 
-        <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.8, delay: 2.4 }} className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 px-4">
-          <MagneticButton className={`group relative w-full sm:w-auto px-10 md:px-16 py-5 md:py-8 bg-black text-white dark:bg-white dark:text-black text-[10px] md:text-[13px] font-black uppercase ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-[0.3em] md:tracking-[0.5em]'} rounded-full overflow-hidden transition-all hover:scale-110 active:scale-95 shadow-2xl`}>
+        <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.8, delay: 2.4 }} className="flex flex-col sm:flex-row items-center justify-center gap-8 md:gap-32 px-4 relative z-30">
+          <MagneticButton onClick={() => navigate('/login')} className={`group relative w-full sm:w-auto px-10 md:px-16 py-5 md:py-8 bg-black text-white dark:bg-white dark:text-black text-[10px] md:text-[13px] font-black uppercase ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-[0.3em] md:tracking-[0.5em]'} rounded-full overflow-hidden transition-all hover:scale-110 active:scale-95 shadow-2xl`}>
             <span className="relative z-10">{content[lang].enroll}</span>
             <div className="absolute inset-0 bg-indigo-600 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700 ease-[0.16,1,0.3,1]" />
             <motion.span whileHover={{ x: 5 }} className="absolute right-6 md:right-10 opacity-0 group-hover:opacity-100 transition-all duration-700 translate-x-10 group-hover:translate-x-0 hidden sm:block">
               <svg width="20" height="20" className="md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </motion.span>
           </MagneticButton>
-          <MagneticButton className={`w-full sm:w-auto px-10 md:px-16 py-5 md:py-8 ${isDark ? 'glass text-white' : 'light-glass text-black'} text-[10px] md:text-[13px] font-black uppercase ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-[0.3em] md:tracking-[0.5em]'} rounded-full hover:bg-black/5 dark:hover:bg-white/20 hover:scale-110 transition-all group active:scale-95 border border-transparent hover:border-indigo-400/60 transition-colors duration-700 drop-shadow-[0_10px_20px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_10px_20px_rgba(0,0,0,0.3)]`}>
-            <span className="group-hover:text-indigo-400 transition-colors">{content[lang].counsel}</span>
+          <MagneticButton onClick={() => document.getElementById('counseling')?.scrollIntoView({ behavior: 'smooth' })} className={`w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 ${isDark ? 'bg-white/10 border-white/20 text-white hover:bg-white/20' : 'bg-black/5 border-black/10 text-black hover:bg-black/10'} border backdrop-blur-md text-[9px] md:text-[11px] font-bold uppercase ${lang === 'bn' ? 'tracking-normal font-bangla' : 'tracking-[0.2em] md:tracking-[0.3em]'} rounded-full transition-all group active:scale-95 hover:scale-105 hover:border-indigo-500/50 transition-colors duration-700 drop-shadow-lg`}>
+            <span className="group-hover:text-indigo-500 dark:group-hover:text-indigo-300 transition-colors">{content[lang].counsel}</span>
           </MagneticButton>
         </motion.div>
       </motion.div>

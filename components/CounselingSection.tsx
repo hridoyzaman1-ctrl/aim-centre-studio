@@ -81,7 +81,7 @@ const CounselingSection: React.FC<{ lang: Language }> = ({ lang }) => {
   const current = content[lang];
 
   return (
-    <section ref={containerRef} className="relative py-24 md:py-40 overflow-hidden bg-white dark:bg-black transition-colors duration-500">
+    <section ref={containerRef} className="relative py-24 md:py-32 overflow-hidden bg-white dark:bg-black transition-colors duration-500">
       <motion.div style={{ y: backgroundY }} className="absolute top-0 right-0 w-[80vw] md:w-[60vw] h-[80vw] md:h-[60vw] bg-indigo-500/[0.03] dark:bg-indigo-500/[0.05] rounded-full blur-[100px] md:blur-[150px] pointer-events-none" aria-hidden="true" />
       <div className="max-w-screen-2xl mx-auto px-6 md:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-24 md:mb-32">
@@ -95,18 +95,18 @@ const CounselingSection: React.FC<{ lang: Language }> = ({ lang }) => {
             </div>
           </motion.div>
           <div className="relative group mt-10 lg:mt-0">
-            <motion.div 
-              ref={cardRef} 
-              onMouseMove={(e) => { 
-                if (!cardRef.current || window.innerWidth < 1024) return; 
-                const rect = cardRef.current.getBoundingClientRect(); 
-                cardMouseX.set((e.clientX - rect.left) / rect.width - 0.5); 
-                cardMouseY.set((e.clientY - rect.top) / rect.height - 0.5); 
-              }} 
-              onMouseLeave={() => { cardMouseX.set(0); cardMouseY.set(0); }} 
-              initial={{ opacity: 0, scale: 0.95 }} 
-              whileInView={{ opacity: 1, scale: 1 }} 
-              viewport={{ once: true }} 
+            <motion.div
+              ref={cardRef}
+              onMouseMove={(e) => {
+                if (!cardRef.current || window.innerWidth < 1024) return;
+                const rect = cardRef.current.getBoundingClientRect();
+                cardMouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+                cardMouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+              }}
+              onMouseLeave={() => { cardMouseX.set(0); cardMouseY.set(0); }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
               className="relative aspect-auto min-h-[620px] md:aspect-[4/5] bg-gray-50 dark:bg-[#0a0a0a] rounded-[3rem] md:rounded-[4.5rem] border border-black/5 dark:border-white/10 overflow-hidden p-6 md:p-8 flex flex-col shadow-2xl transition-all duration-500"
             >
               <motion.div style={{ x: imgX, y: imgY, scale: 1.25 }} className="absolute inset-0 pointer-events-none opacity-[0.1] dark:opacity-[0.15] group-hover:opacity-25 transition-opacity duration-1000" aria-hidden="true">
@@ -114,34 +114,34 @@ const CounselingSection: React.FC<{ lang: Language }> = ({ lang }) => {
               </motion.div>
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex gap-2 md:gap-4 mb-8 md:mb-12 p-1.5 md:p-2 bg-black/5 dark:bg-white/5 rounded-[2rem] md:rounded-[2.5rem] w-full max-w-[320px] mx-auto backdrop-blur-md border border-black/5 dark:border-white/5" role="tablist" aria-label="Counseling Categories">
-                  <button 
+                  <button
                     role="tab"
                     aria-selected={activeTab === 'student'}
                     aria-controls="panel-student"
-                    onClick={() => setActiveTab('student')} 
+                    onClick={() => setActiveTab('student')}
                     className={`flex-1 py-3 md:py-4 rounded-[1.5rem] md:rounded-[2rem] text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 ${activeTab === 'student' ? 'bg-indigo-600 text-white shadow-xl' : 'text-gray-500 hover:text-black dark:hover:text-white'}`}
                   >
                     {current.tabStudent}
                   </button>
-                  <button 
+                  <button
                     role="tab"
                     aria-selected={activeTab === 'parent'}
                     aria-controls="panel-parent"
-                    onClick={() => setActiveTab('parent')} 
+                    onClick={() => setActiveTab('parent')}
                     className={`flex-1 py-3 md:py-4 rounded-[1.5rem] md:rounded-[2rem] text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 ${activeTab === 'parent' ? 'bg-indigo-600 text-white shadow-xl' : 'text-gray-500 hover:text-black dark:hover:text-white'}`}
                   >
                     {current.tabParent}
                   </button>
                 </div>
                 <AnimatePresence mode="wait">
-                  <motion.div 
-                    key={activeTab} 
+                  <motion.div
+                    key={activeTab}
                     id={`panel-${activeTab}`}
                     role="tabpanel"
-                    initial={{ opacity: 0, y: 15 }} 
-                    animate={{ opacity: 1, y: 0 }} 
-                    exit={{ opacity: 0, y: -15 }} 
-                    transition={{ duration: 0.4 }} 
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.4 }}
                     className="flex-grow flex flex-col justify-center text-center px-2 pb-8"
                   >
                     <h4 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-black dark:text-white mb-4 md:mb-6">{activeTab === 'student' ? current.wellness : current.guidance}</h4>
@@ -166,12 +166,12 @@ const CounselingSection: React.FC<{ lang: Language }> = ({ lang }) => {
         </div>
         <div className="grid md:grid-cols-3 gap-6 md:gap-8">
           {current.footer.map((item, i) => (
-            <motion.div 
-              key={i} 
-              initial={{ opacity: 0, y: 20 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
-              transition={{ delay: i * 0.1 }} 
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
               className="p-8 md:p-10 border border-black/5 dark:border-white/5 rounded-[2.5rem] md:rounded-[3.5rem] bg-gray-50/50 dark:bg-white/[0.02] flex flex-col items-center text-center transition-all duration-500 hover:bg-white dark:hover:bg-white/5 shadow-sm hover:shadow-xl"
             >
               <h5 className="text-lg md:text-xl font-black uppercase tracking-tighter text-black dark:text-white mb-1 md:mb-2">{item.title}</h5>

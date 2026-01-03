@@ -93,7 +93,7 @@ const LevelCard: React.FC<{ level: string, title: string, description: string, i
       role="button"
       tabIndex={0}
       aria-label={`${level}: ${title}. ${description}`}
-      className="group relative min-h-[500px] md:min-h-[660px] bg-slate-50 dark:bg-[#080808] border border-black/10 dark:border-white/10 rounded-[2.5rem] md:rounded-[4rem] lg:rounded-[5rem] p-10 md:p-14 overflow-hidden flex flex-col justify-between shadow-3xl transition-all duration-700 hover:border-indigo-500/60 focus:ring-4 focus:ring-indigo-500 outline-none"
+      className="group relative min-h-[500px] md:min-h-[660px] bg-slate-50 dark:bg-[#080808] border-2 border-black/10 dark:border-white/15 rounded-[2.5rem] md:rounded-[4rem] lg:rounded-[5rem] p-10 md:p-14 overflow-hidden flex flex-col justify-between shadow-3xl transition-all duration-700 hover:border-indigo-500 dark:hover:border-indigo-400 hover:shadow-indigo-500/20 focus:ring-4 focus:ring-indigo-500 outline-none"
     >
       <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-30 transition-opacity duration-1000 bg-indigo-500 blur-[120px] md:blur-[150px]" />
       <div className="relative z-10 flex flex-col items-center justify-center flex-grow mb-8 transition-transform duration-700 group-hover:scale-105 md:group-hover:scale-110" style={{ transform: "translateZ(60px)" }}>
@@ -151,7 +151,7 @@ const SpecialNeedsSection: React.FC<{ lang: Language }> = ({ lang }) => {
   const current = content[lang];
 
   return (
-    <section ref={containerRef} className="py-24 md:py-64 bg-white dark:bg-[#050505] transition-colors duration-700 overflow-hidden relative">
+    <section ref={containerRef} className="py-24 md:py-32 bg-white dark:bg-[#050505] transition-colors duration-700 overflow-hidden relative">
       <motion.div style={{ x: xParallax, y: yParallax }} className="absolute top-0 right-0 w-[80vw] md:w-[50vw] h-[80vw] md:h-[50vw] bg-indigo-500/[0.08] rounded-full blur-[100px] md:blur-[180px] pointer-events-none" />
       <div className="max-w-screen-2xl mx-auto px-6 md:px-12 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-32 items-center mb-24 md:mb-48">
